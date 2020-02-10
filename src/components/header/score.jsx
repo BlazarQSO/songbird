@@ -11,7 +11,7 @@ class Score extends React.Component {
         return (
             <div class="header__logo_score">
                 <label>Score: </label>
-                <span>{this.state.score}</span>
+                <span>{this.props.score}</span>
             </div>
         );
     }

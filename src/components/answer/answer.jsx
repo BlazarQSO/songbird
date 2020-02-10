@@ -19,7 +19,12 @@ class Answer extends React.Component {
     render() {
         return (
             <section className="answer">
-                <AnswerOptions options={this.props.optionsBirds} getResult={this.getResult}/>
+                <AnswerOptions
+                    options={this.props.optionsBirds}
+                    getResult={this.getResult}
+                    searchName={this.props.searchName}
+                    changeScore={this.props.changeScore}
+                />
                 <AnswerResult result={this.state.result}/>
             </section>
         );

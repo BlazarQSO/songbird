@@ -8,7 +8,13 @@ class ButtonNext extends React.Component {
     render() {
         return (
             <div class="next">
-                <button class="next__btn" onClick={() => this.props.nextStep()}>Next Level</button>
+                <button class="next__btn" onClick={() => {
+                    this.props.nextStep();
+                    this.props.randBird();
+                    this.props.optionsBirds();
+                }}>
+                    Next Level
+                </button>
             </div>
         );
     }

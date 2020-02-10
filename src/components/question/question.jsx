@@ -2,11 +2,13 @@ import React from 'react';
 import './question.scss';
 import { AudioCmp } from '../partial/audioCmp';
 import { ImgCmp } from '../partial/imgCmp';
+//import birdsData from '../data/birds';
 
 class Question extends React.Component {
     constructor(props) {
         super(props);
     }
+
     render() {
         return (
             <section className="question">

@@ -8,7 +8,7 @@ class HeaderLogo extends React.Component {
         return (
             <div className="header__logo">
                 <HeaderLogoImg />
-                <Score />
+                <Score  score={this.props.score}/>
             </div>
         );
     }

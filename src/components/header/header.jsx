@@ -10,7 +10,7 @@ class Header extends React.Component {
     render() {
         return (
             <header className="header">
-                <HeaderLogo />
+                <HeaderLogo score={this.props.score}/>
                 <HeaderSteps step={this.props.step}/>
             </header>
         );
