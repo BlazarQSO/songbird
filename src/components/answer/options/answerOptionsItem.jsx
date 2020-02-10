@@ -9,8 +9,12 @@ class AnswerOptionsItem extends React.Component {
     render() {
         return (
             <div class="answer__options_item">
-                <input type="radio" class="answer__options_item_radio" id="radio_1" />
-                <label for="radio_1" class="answer__options_item_label"><span>{this.props.name}</span></label>
+                <input type="radio"
+                    onClick={() => this.props.getResult(this.props.elem)}
+                    class="answer__options_item_radio"
+                    id={`radio_${this.props.elem.id}`}
+                />
+                <label for={`radio_${this.props.elem.id}`} class="answer__options_item_label"><span>{this.props.elem.name}</span></label>
             </div>
         );
     }

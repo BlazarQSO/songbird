@@ -4,22 +4,32 @@ import { ImgCmp } from '../../partial/imgCmp';
 import { AudioCmp } from '../../partial/audioCmp';
 
 class AnswerResult extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
+        if (this.props.result != false) {
+            return (
+                <div className="answer__result">
+                    <div className="answer__result_info">
+                        <ImgCmp img={this.props.result.image}/>
+                        <figure className="answer__result_info_data">
+                            <figcaption className="answer__result_info_data_title">{this.props.result.name}</figcaption>
+                            <hr/>
+                            <figcaption className="answer__result_info_data_type">{this.props.result.species}</figcaption>
+                            <hr/>
+                            <AudioCmp audio={this.props.result.audio}/>
+                        </figure>
+                    </div>
+                    <div className="answer__result_description">
+                        <span>{this.props.result.description}</span>
+                    </div>
+                </div>
+            );
+        }
         return (
             <div className="answer__result">
-                <div className="answer__result_info">
-                    <ImgCmp />
-                    <figure className="answer__result_info_data">
-                        <figcaption className="answer__result_info_data_title">Кукушка</figcaption>
-                        <hr/>
-                        <figcaption className="answer__result_info_data_type">Cuculus canorus</figcaption>
-                        <hr/>
-                        <AudioCmp />
-                    </figure>
-                </div>
-                <div className="answer__result_description">
-                    <span>Кукушку назвали так из-за особенностей ее песен. Звонкое «ку-ку» не спутать ни с какой другой птицей. Кукушки не строят гнезда, их потомство выращивают другие виды пернатых, которым кукушки подбрасывают свои яйца.</span>
-                </div>
+                <div className="answer__result_title">Послушайте плеер. Выберите птицу из списка</div>
             </div>
         );
     }

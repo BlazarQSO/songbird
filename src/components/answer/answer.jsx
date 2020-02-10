@@ -4,11 +4,23 @@ import { AnswerResult } from './result/answerResult';
 import { AnswerOptions } from './options/answerOptions';
 
 class Answer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            result: false
+        }
+        this.getResult = this.getResult.bind(this);
+    }
+    getResult(value) {
+        this.setState({
+            result: value
+        })
+    }
     render() {
         return (
             <section className="answer">
-                <AnswerOptions />
-                <AnswerResult />
+                <AnswerOptions options={this.props.optionsBirds} getResult={this.getResult}/>
+                <AnswerResult result={this.state.result}/>
             </section>
         );
     }
