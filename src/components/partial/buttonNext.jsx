@@ -6,17 +6,30 @@ class ButtonNext extends React.Component {
         super(props);
     }
     render() {
-        return (
-            <div class="next">
-                <button class="next__btn" onClick={() => {
-                    this.props.nextStep();
-                    this.props.randBird();
-                    this.props.optionsBirds();
-                }}>
-                    Next Level
-                </button>
-            </div>
-        );
+        if (this.props.locked) {
+            return (
+                <div className="next">
+                    <button className="next__btn" onClick={() => {
+                        this.props.nextStep();
+                        this.props.randBird();
+                        this.props.changeNextStep(false);
+                        this.props.resetFuncResult(false);
+                        this.props.optionsBirds();
+                        this.props.showQuestion(false);
+                    }}>
+                        Next Level
+                    </button>
+                </div>
+            );
+        } else {
+            return (
+                <div className="next">
+                    <button disabled className="next__btn_grey">
+                        Next Level
+                    </button>
+                </div>
+            );
+        }
     }
 }
 

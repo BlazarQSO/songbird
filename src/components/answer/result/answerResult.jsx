@@ -8,7 +8,7 @@ class AnswerResult extends React.Component {
         super(props);
     }
     render() {
-        if (this.props.result != false) {
+        if (this.props.resetResult) {
             return (
                 <div className="answer__result">
                     <div className="answer__result_info">

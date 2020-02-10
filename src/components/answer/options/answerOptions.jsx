@@ -11,12 +11,15 @@ class AnswerOptions extends React.Component {
         this.getScore = this.getScore.bind(this);
     }
 
-    getScore(check) {
+    getScore(check, score) {
+        if (score) {
+            return;
+        }
+
         if (check) {
             this.props.changeScore(this.state.score);
         } else {
             this.setState({score: this.state.score - 1});
-            // alert(this.state.score);
         }
     }
 
@@ -28,6 +31,9 @@ class AnswerOptions extends React.Component {
                         getResult={this.props.getResult}
                         searchName={this.props.searchName}
                         getScore={this.getScore}
+                        changeNextStep={this.props.changeNextStep}
+                        resetFuncResult={this.props.resetFuncResult}
+                        showQuestion={this.props.showQuestion}
                         elem={elem}
                         key={elem.id}
                     />

@@ -12,15 +12,22 @@ class Main extends React.Component {
         const _randBird = randBirdInside();
         const _optionsBirds = getOptionsBirdsInside();
         this.state = {
-            step: 1,
-            score: 10,
+            step: 0,
+            score: 0,
             randBird: _randBird,
             optionsBirds: _optionsBirds,
+            nextStep: false,
+            resetResult: false,
+            right: false,
+            score: 5
         }
         this.nextStep = this.nextStep.bind(this);
         this.randBird = this.randBird.bind(this);
         this.getOptionsBirds = this.getOptionsBirds.bind(this);
         this.changeScore = this.changeScore.bind(this);
+        this.changeNextStep = this.changeNextStep.bind(this);
+        this.resetResult = this.resetResult.bind(this);
+        this.showQuestion = this.showQuestion.bind(this);
     }
 
     nextStep() {
@@ -30,14 +37,16 @@ class Main extends React.Component {
     }
 
     randBird() {
-        const index = this.state.step;
+        let index = this.state.step + 1;
+        if (index === 6) index = 0;
         const curStepBirds = birdsData[index];
         const rand = Math.floor(Math.random() * (curStepBirds.length));
         this.setState({randBird: curStepBirds[rand]});
     }
 
     getOptionsBirds() {
-        const index = this.state.step;
+        let index = this.state.step + 1;
+        if (index === 6) index = 0;
         const curStepBirds = [...birdsData[index]];
         const randBirds = [];
         while (curStepBirds.length > 0) {
@@ -52,22 +61,56 @@ class Main extends React.Component {
         this.setState({score: this.state.score + value});
     }
 
+    changeNextStep(value) {
+        this.setState({nextStep: value});
+    }
+
+    resetResult(value) {
+        this.setState({resetResult: value});
+    }
+
+    showQuestion(value) {
+        this.setState({right: value});
+    }
+
+        // getScore(check, score) {
+    //     if (score) {
+    //         return;
+    //     }
+
+    //     if (check) {
+    //         this.props.changeScore(this.state.score);
+    //     } else {
+    //         this.setState({score: this.state.score - 1});
+    //     }
+    // }
+
     render() {
-        //const randBird = this.randBird();
-        //alert(this.state.randBird.name);
         return (
             <div className="main">
                 <Header step={this.state.step} score={this.state.score}/>
-                {/* <Question randBird={randBird}/> */}
-                <Question randBird={this.state.randBird}/>
+                <Question
+                    randBird={this.state.randBird}
+                    right={this.state.right}
+                />
                 <Answer
                     optionsBirds={this.state.optionsBirds}
-                    getResult={this.getResult}
-                    //searchName={randBird.name}
+                    resetResult={this.state.resetResult}
+                    resetFuncResult={this.resetResult}
                     searchName={this.state.randBird.name}
                     changeScore={this.changeScore}
+                    changeNextStep={this.changeNextStep}
+                    showQuestion={this.showQuestion}
                 />
-                <ButtonNext nextStep={this.nextStep} randBird={this.randBird} optionsBirds={this.getOptionsBirds}/>
+                <ButtonNext
+                    nextStep={this.nextStep}
+                    randBird={this.randBird}
+                    optionsBirds={this.getOptionsBirds}
+                    locked={this.state.nextStep}
+                    changeNextStep={this.changeNextStep}
+                    resetFuncResult={this.resetResult}
+                    showQuestion={this.showQuestion}
+                />
             </div>
         );
     }

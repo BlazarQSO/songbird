@@ -7,7 +7,7 @@ class AudioCmp extends React.Component {
     }
     render() {
         return (
-            <audio controls class="question__hint_audio" src={this.props.audio}>
+            <audio controls className="question__hint_audio" src={this.props.audio}>
                 <source src={this.props.audio} />
             </audio>
         );

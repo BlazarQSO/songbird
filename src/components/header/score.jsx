@@ -9,7 +9,7 @@ class Score extends React.Component {
 
     render() {
         return (
-            <div class="header__logo_score">
+            <div className="header__logo_score">
                 <label>Score: </label>
                 <span>{this.props.score}</span>
             </div>

@@ -24,8 +24,15 @@ class Answer extends React.Component {
                     getResult={this.getResult}
                     searchName={this.props.searchName}
                     changeScore={this.props.changeScore}
+                    changeNextStep={this.props.changeNextStep}
+                    resetFuncResult={this.props.resetFuncResult}
+                    showQuestion={this.props.showQuestion}
+                    getScore={this.props.getScore}
                 />
-                <AnswerResult result={this.state.result}/>
+                <AnswerResult
+                    result={this.state.result}
+                    resetResult={this.props.resetResult}
+                />
             </section>
         );
     }
