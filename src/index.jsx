@@ -8,4 +8,4 @@ import '@babel/polyfill';
 const AppWithHot = hot(module)(Main);
 
 const mountNode = document.getElementById('app');
-ReactDOM.render(<AppWithHot />, mountNode);
+ReactDOM.render(<Main />, mountNode);
