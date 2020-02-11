@@ -19,3 +19,12 @@
     font-size: 80px;
     margin-top: 10px;
 }
+
+@media (max-width: 620px) {
+    .endGame__wrap_message {
+        font-size: 45px;
+    }
+    img {
+        width: 300px;
+    }
+}
