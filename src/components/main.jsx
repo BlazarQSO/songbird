@@ -6,6 +6,7 @@ import { Answer } from './answer/answer';
 import { ButtonNext } from './partial/buttonNext';
 import { EndGame } from './partial/endGame';
 import birdsData from '../data/birds';
+import img from '../images/win.gif';
 
 class Main extends React.Component {
     constructor(props){
@@ -119,7 +120,17 @@ class Main extends React.Component {
         this.setState({options: options});
     }
 
-    changeOptions(value, index) {
+    changeOptions(value, index, right) {
+        if (right) {
+            var audio = new Audio();
+            audio.src = "https://www.xeno-canto.org/sounds/uploaded/IIJAXHKSCC/XC387835-Tit-like%20Dacnis%20%28call%2Csong%29%2020161204%2CEsidePortachuelo%2CHuascaranNP%2CPERU.mp3";
+            audio.autoplay = true;
+            document.querySelector('audio').pause();
+        } else {
+            var audio = new Audio();
+            audio.src = "https://www.xeno-canto.org/sounds/uploaded/EHGWCIGILC/XC334238-aust-pelican-snp1.mp3";
+            audio.autoplay = true;
+        }
         const options = this.state.options;
         options[index] = value;
         this.setState({options: options});
@@ -177,13 +188,14 @@ class Main extends React.Component {
                         resetOptions={this.resetOptions}
                         endGame={this.checkGame}
                     />
+
                 </div>
             );
         } else if (this.state.endGame === "next") {
             return (
                 <div className="endGame__wrap">
                     <EndGame
-                        message={"Вы набрали:"}
+                        message={"Из 30 Вы Набрали:"}
                         score={this.state.score}
                         messageBelow={"Хотите повторить попытку?"}
                     />
@@ -201,6 +213,7 @@ class Main extends React.Component {
                         endGame={this.checkGame}
                         resetScore={this.resetScore}
                     />
+                    <img src={img} alt=""/>
                 </div>
             );
         } else {
@@ -211,6 +224,9 @@ class Main extends React.Component {
                         score={this.state.score}
                         messageBelow={"Поздравляю, Вы прошли игру!"}
                     />
+                    <img src={img} alt=""/>
+                    <img src={img} alt=""/>
+                    <img src={img} alt=""/>
                 </div>
             );
         }

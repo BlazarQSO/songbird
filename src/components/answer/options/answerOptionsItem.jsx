@@ -8,12 +8,10 @@ class AnswerOptionsItem extends React.Component {
             correctly: "answer__options_item",
         }
         this.onChange = this.onChange.bind(this);
-        this.resetCorrectly = this.resetCorrectly.bind(this);
     }
 
     onChange(curName, searchName, getScore, changeNextStep, resetFuncResult, showQuestion,
             resetRadio, resetFuncRadio, optionsRadio, changeOptions, index) {
-
 
         if (resetRadio === false){
             return;
@@ -24,41 +22,16 @@ class AnswerOptionsItem extends React.Component {
         }
 
         if (curName === searchName) {
-            changeOptions("answer__options_item correctly", index);
+            changeOptions("answer__options_item correctly", index, true);
             changeNextStep(true);
             showQuestion(true);
             getScore(true, score);
             resetFuncRadio(false);
         } else {
-            changeOptions("answer__options_item incorrectly", index);
+            changeOptions("answer__options_item incorrectly", index, false);
             getScore(false, score);
         }
         resetFuncResult(true);
-
-
-        // let score = false;
-        // if (this.state.correctly !== "answer__options_item") {
-        //     score = true;
-        // }
-
-        // if (curName === searchName) {
-        //     this.setState({correctly: "answer__options_item correctly"});
-        //     changeNextStep(true);
-        //     showQuestion(true);
-        //     getScore(true, score);
-        //     resetFuncRadio(false);
-        // } else {
-        //     this.setState({correctly: "answer__options_item incorrectly"});
-        //     getScore(false, score);
-        // }
-        // resetFuncResult(true);
-    }
-
-    resetCorrectly() {
-        if (this.props.count === 5 && this.props.resetRadio) {
-            this.setState({correctly: "answer__options_item"});
-        }
-        this.setState({correctly: "answer__options_item"});
     }
 
     change(resetFuncRadio){
@@ -90,7 +63,9 @@ class AnswerOptionsItem extends React.Component {
                     className="answer__options_item_radio"
                     id={`radio_${this.props.elem.id}`}
                 />
-                <label htmlFor={`radio_${this.props.elem.id}`} className="answer__options_item_label"><span>{this.props.elem.name}</span></label>
+                <label htmlFor={`radio_${this.props.elem.id}`} className="answer__options_item_label">
+                    <span>{this.props.elem.name}</span>
+                </label>
             </div>
         );
     }
