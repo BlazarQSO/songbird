@@ -11,6 +11,8 @@ class Main extends React.Component {
         super(props)
         const _randBird = randBirdInside();
         const _optionsBirds = getOptionsBirdsInside();
+        const _length = _optionsBirds.length;
+        const _options = new Array(_length).fill("answer__options_item");
         this.state = {
             step: 0,
             score: 0,
@@ -21,7 +23,8 @@ class Main extends React.Component {
             right: false,
             count: 5,
             resetRadio: true,
-            correctly: "answer__options_item"
+            options: _options,
+            length: _length
         }
         this.nextStep = this.nextStep.bind(this);
         this.randBird = this.randBird.bind(this);
@@ -32,8 +35,9 @@ class Main extends React.Component {
         this.showQuestion = this.showQuestion.bind(this);
         this.getScore = this.getScore.bind(this);
         this.resetCount = this.resetCount.bind(this);
-        this.resetCorrectly = this.resetCorrectly.bind(this);
         this.resetRadio = this.resetRadio.bind(this);
+        this.resetOptions = this.resetOptions.bind(this);
+        this.changeOptions = this.changeOptions.bind(this);
     }
 
     nextStep() {
@@ -103,8 +107,15 @@ class Main extends React.Component {
         this.setState({resetRadio: value});
     }
 
-    resetCorrectly(){
-        this.setState({correctly: "answer__options_item"});
+    resetOptions() {
+        const options = new Array(this.state.length).fill("answer__options_item");
+        this.setState({options: options});
+    }
+
+    changeOptions(value, index) {
+        const options = this.state.options;
+        options[index] = value;
+        this.setState({options: options});
     }
 
     render() {
@@ -125,9 +136,9 @@ class Main extends React.Component {
                     getScore={this.getScore}
                     resetRadio={this.state.resetRadio}
                     resetFuncRadio={this.resetRadio}
-                    resetCorrectly={this.resetCorrectly}
-                    correctly={this.state.correctly}
                     count={this.state.count}
+                    optionsRadio={this.state.options}
+                    changeOptions={this.changeOptions}
                 />
                 <ButtonNext
                     nextStep={this.nextStep}
@@ -139,6 +150,7 @@ class Main extends React.Component {
                     showQuestion={this.showQuestion}
                     resetCount={this.resetCount}
                     resetRadio={this.resetRadio}
+                    resetOptions={this.resetOptions}
                 />
             </div>
         );

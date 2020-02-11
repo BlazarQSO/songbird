@@ -36,9 +36,10 @@ class AnswerOptions extends React.Component {
                         showQuestion={this.props.showQuestion}
                         resetRadio={this.props.resetRadio}
                         resetFuncRadio={this.props.resetFuncRadio}
-                        resetCorrectly={this.props.resetCorrectly}
-                        correctly={this.props.correctly}
                         count={this.props.count}
+                        optionsRadio={this.props.optionsRadio[index]}
+                        changeOptions={this.props.changeOptions}
+                        index={index}
                         elem={elem}
                         key={elem.id}
                     />

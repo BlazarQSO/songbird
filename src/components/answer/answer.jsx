@@ -29,9 +29,9 @@ class Answer extends React.Component {
                     getScore={this.props.getScore}
                     resetRadio={this.props.resetRadio}
                     resetFuncRadio={this.props.resetFuncRadio}
-                    resetCorrectly={this.props.resetCorrectly}
-                    correctly={this.props.correctly}
                     count={this.props.count}
+                    optionsRadio={this.props.optionsRadio}
+                    changeOptions={this.props.changeOptions}
                 />
                 <AnswerResult
                     result={this.state.result}

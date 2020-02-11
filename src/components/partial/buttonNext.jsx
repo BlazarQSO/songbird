@@ -18,6 +18,7 @@ class ButtonNext extends React.Component {
                         this.props.showQuestion(false);
                         this.props.resetCount();
                         this.props.resetRadio(true);
+                        this.props.resetOptions();
                     }}>
                         Next Level
                     </button>

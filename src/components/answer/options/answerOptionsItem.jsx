@@ -11,26 +11,47 @@ class AnswerOptionsItem extends React.Component {
         this.resetCorrectly = this.resetCorrectly.bind(this);
     }
 
-    onChange(curName, searchName, getScore, changeNextStep, resetFuncResult, showQuestion, resetCorrectly, resetRadio, resetFuncRadio) {
+    onChange(curName, searchName, getScore, changeNextStep, resetFuncResult, showQuestion,
+            resetRadio, resetFuncRadio, optionsRadio, changeOptions, index) {
+
+
         if (resetRadio === false){
             return;
         }
         let score = false;
-        if (this.state.correctly !== "answer__options_item") {
+        if (optionsRadio !== "answer__options_item") {
             score = true;
         }
 
         if (curName === searchName) {
-            this.setState({correctly: "answer__options_item correctly"});
+            changeOptions("answer__options_item correctly", index);
             changeNextStep(true);
             showQuestion(true);
             getScore(true, score);
             resetFuncRadio(false);
         } else {
-            this.setState({correctly: "answer__options_item incorrectly"});
+            changeOptions("answer__options_item incorrectly", index);
             getScore(false, score);
         }
         resetFuncResult(true);
+
+
+        // let score = false;
+        // if (this.state.correctly !== "answer__options_item") {
+        //     score = true;
+        // }
+
+        // if (curName === searchName) {
+        //     this.setState({correctly: "answer__options_item correctly"});
+        //     changeNextStep(true);
+        //     showQuestion(true);
+        //     getScore(true, score);
+        //     resetFuncRadio(false);
+        // } else {
+        //     this.setState({correctly: "answer__options_item incorrectly"});
+        //     getScore(false, score);
+        // }
+        // resetFuncResult(true);
     }
 
     resetCorrectly() {
@@ -45,15 +66,12 @@ class AnswerOptionsItem extends React.Component {
     }
 
     render() {
-
-        let correctly = this.state.correctly;
-
+        let correctly = this.props.optionsRadio;
         return (
             <div className={correctly}>
                 <input type="radio"
                     onClick={() => {
                             this.props.getResult(this.props.elem);
-                            //this.resetCorrectly();
                             this.onChange(
                                 this.props.elem.name,
                                 this.props.searchName,
@@ -61,15 +79,14 @@ class AnswerOptionsItem extends React.Component {
                                 this.props.changeNextStep,
                                 this.props.resetFuncResult,
                                 this.props.showQuestion,
-                                this.props.resetCorrectly,
                                 this.props.resetRadio,
-                                this.props.resetFuncRadio
+                                this.props.resetFuncRadio,
+                                this.props.optionsRadio,
+                                this.props.changeOptions,
+                                this.props.index
                             );
                         }
                     }
-                    // onChange={() => {
-                    //     this.resetCorrectly();
-                    // }}
                     className="answer__options_item_radio"
                     id={`radio_${this.props.elem.id}`}
                 />
