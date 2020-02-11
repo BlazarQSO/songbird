@@ -24,7 +24,9 @@ class ButtonNext extends React.Component {
                         this.props.resetRadio(true);
                         this.props.resetOptions();
                         this.props.endGame();
-                        this.props.resetScore();
+                        if (this.props.resetScore !== undefined) {
+                            this.props.resetScore();
+                        }
                     }}>
                         Next Level
                     </button>
