@@ -19,7 +19,9 @@ class Main extends React.Component {
             nextStep: false,
             resetResult: false,
             right: false,
-            score: 5
+            count: 5,
+            resetRadio: true,
+            correctly: "answer__options_item"
         }
         this.nextStep = this.nextStep.bind(this);
         this.randBird = this.randBird.bind(this);
@@ -28,6 +30,10 @@ class Main extends React.Component {
         this.changeNextStep = this.changeNextStep.bind(this);
         this.resetResult = this.resetResult.bind(this);
         this.showQuestion = this.showQuestion.bind(this);
+        this.getScore = this.getScore.bind(this);
+        this.resetCount = this.resetCount.bind(this);
+        this.resetCorrectly = this.resetCorrectly.bind(this);
+        this.resetRadio = this.resetRadio.bind(this);
     }
 
     nextStep() {
@@ -73,17 +79,33 @@ class Main extends React.Component {
         this.setState({right: value});
     }
 
-        // getScore(check, score) {
-    //     if (score) {
-    //         return;
-    //     }
+    getScore(check, score) {
+        if (score) {
+            return;
+        }
 
-    //     if (check) {
-    //         this.props.changeScore(this.state.score);
-    //     } else {
-    //         this.setState({score: this.state.score - 1});
-    //     }
-    // }
+        if (check) {
+            this.changeScore(this.state.count);
+        } else {
+            let count = this.state.count;
+            if (count > 0) {
+                count -= 1;
+            }
+            this.setState({count: count});
+        }
+    }
+
+    resetCount() {
+        this.setState({count: 5});
+    }
+
+    resetRadio(value) {
+        this.setState({resetRadio: value});
+    }
+
+    resetCorrectly(){
+        this.setState({correctly: "answer__options_item"});
+    }
 
     render() {
         return (
@@ -98,9 +120,14 @@ class Main extends React.Component {
                     resetResult={this.state.resetResult}
                     resetFuncResult={this.resetResult}
                     searchName={this.state.randBird.name}
-                    changeScore={this.changeScore}
                     changeNextStep={this.changeNextStep}
                     showQuestion={this.showQuestion}
+                    getScore={this.getScore}
+                    resetRadio={this.state.resetRadio}
+                    resetFuncRadio={this.resetRadio}
+                    resetCorrectly={this.resetCorrectly}
+                    correctly={this.state.correctly}
+                    count={this.state.count}
                 />
                 <ButtonNext
                     nextStep={this.nextStep}
@@ -110,6 +137,8 @@ class Main extends React.Component {
                     changeNextStep={this.changeNextStep}
                     resetFuncResult={this.resetResult}
                     showQuestion={this.showQuestion}
+                    resetCount={this.resetCount}
+                    resetRadio={this.resetRadio}
                 />
             </div>
         );

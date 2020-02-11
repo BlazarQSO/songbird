@@ -23,11 +23,15 @@ class Answer extends React.Component {
                     options={this.props.optionsBirds}
                     getResult={this.getResult}
                     searchName={this.props.searchName}
-                    changeScore={this.props.changeScore}
                     changeNextStep={this.props.changeNextStep}
                     resetFuncResult={this.props.resetFuncResult}
                     showQuestion={this.props.showQuestion}
                     getScore={this.props.getScore}
+                    resetRadio={this.props.resetRadio}
+                    resetFuncRadio={this.props.resetFuncRadio}
+                    resetCorrectly={this.props.resetCorrectly}
+                    correctly={this.props.correctly}
+                    count={this.props.count}
                 />
                 <AnswerResult
                     result={this.state.result}
