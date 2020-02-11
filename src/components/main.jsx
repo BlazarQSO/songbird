@@ -4,6 +4,7 @@ import { Header } from './header/header';
 import { Question } from './question/question';
 import { Answer } from './answer/answer';
 import { ButtonNext } from './partial/buttonNext';
+import { EndGame } from './partial/endGame';
 import birdsData from '../data/birds';
 
 class Main extends React.Component {
@@ -24,7 +25,8 @@ class Main extends React.Component {
             count: 5,
             resetRadio: true,
             options: _options,
-            length: _length
+            length: _length,
+            endGame: "game"
         }
         this.nextStep = this.nextStep.bind(this);
         this.randBird = this.randBird.bind(this);
@@ -38,25 +40,30 @@ class Main extends React.Component {
         this.resetRadio = this.resetRadio.bind(this);
         this.resetOptions = this.resetOptions.bind(this);
         this.changeOptions = this.changeOptions.bind(this);
+        this.checkGame = this.checkGame.bind(this);
+        this.resetScore = this.resetScore.bind(this);
     }
 
-    nextStep() {
+    nextStep(decStep) {
         let value = this.state.step;
         value = (value + 1) % 6;
+        if (decStep) value -= 1;
         this.setState({ step: value });
     }
 
-    randBird() {
+    randBird(decStep) {
         let index = this.state.step + 1;
         if (index === 6) index = 0;
+        if (decStep) index -= 1;
         const curStepBirds = birdsData[index];
         const rand = Math.floor(Math.random() * (curStepBirds.length));
         this.setState({randBird: curStepBirds[rand]});
     }
 
-    getOptionsBirds() {
+    getOptionsBirds(decStep) {
         let index = this.state.step + 1;
         if (index === 6) index = 0;
+        if (decStep) index -= 1;
         const curStepBirds = [...birdsData[index]];
         const randBirds = [];
         while (curStepBirds.length > 0) {
@@ -118,42 +125,95 @@ class Main extends React.Component {
         this.setState({options: options});
     }
 
+    checkGame() {
+        if (this.state.step === this.state.length - 1) {
+            if (this.state.score < 5 * this.state.length) {
+                this.setState({endGame: "next", nextStep: true});
+            } else {
+                this.setState({endGame: "win"});
+            }
+        } else {
+            this.setState({endGame: "game"});
+        }
+    }
+
+    resetScore() {
+        this.setState({score: 0})
+    }
+
     render() {
-        return (
-            <div className="main">
-                <Header step={this.state.step} score={this.state.score}/>
-                <Question
-                    randBird={this.state.randBird}
-                    right={this.state.right}
-                />
-                <Answer
-                    optionsBirds={this.state.optionsBirds}
-                    resetResult={this.state.resetResult}
-                    resetFuncResult={this.resetResult}
-                    searchName={this.state.randBird.name}
-                    changeNextStep={this.changeNextStep}
-                    showQuestion={this.showQuestion}
-                    getScore={this.getScore}
-                    resetRadio={this.state.resetRadio}
-                    resetFuncRadio={this.resetRadio}
-                    count={this.state.count}
-                    optionsRadio={this.state.options}
-                    changeOptions={this.changeOptions}
-                />
-                <ButtonNext
-                    nextStep={this.nextStep}
-                    randBird={this.randBird}
-                    optionsBirds={this.getOptionsBirds}
-                    locked={this.state.nextStep}
-                    changeNextStep={this.changeNextStep}
-                    resetFuncResult={this.resetResult}
-                    showQuestion={this.showQuestion}
-                    resetCount={this.resetCount}
-                    resetRadio={this.resetRadio}
-                    resetOptions={this.resetOptions}
-                />
-            </div>
-        );
+        if (this.state.endGame === "game") {
+            return (
+                <div className="main">
+                    <Header step={this.state.step} score={this.state.score}/>
+                    <Question
+                        randBird={this.state.randBird}
+                        right={this.state.right}
+                    />
+                    <Answer
+                        optionsBirds={this.state.optionsBirds}
+                        resetResult={this.state.resetResult}
+                        resetFuncResult={this.resetResult}
+                        searchName={this.state.randBird.name}
+                        changeNextStep={this.changeNextStep}
+                        showQuestion={this.showQuestion}
+                        getScore={this.getScore}
+                        resetRadio={this.state.resetRadio}
+                        resetFuncRadio={this.resetRadio}
+                        count={this.state.count}
+                        optionsRadio={this.state.options}
+                        changeOptions={this.changeOptions}
+                    />
+                    <ButtonNext
+                        nextStep={this.nextStep}
+                        randBird={this.randBird}
+                        optionsBirds={this.getOptionsBirds}
+                        locked={this.state.nextStep}
+                        changeNextStep={this.changeNextStep}
+                        resetFuncResult={this.resetResult}
+                        showQuestion={this.showQuestion}
+                        resetCount={this.resetCount}
+                        resetRadio={this.resetRadio}
+                        resetOptions={this.resetOptions}
+                        endGame={this.checkGame}
+                    />
+                </div>
+            );
+        } else if (this.state.endGame === "next") {
+            return (
+                <div className="endGame__wrap">
+                    <EndGame
+                        message={"Вы набрали:"}
+                        score={this.state.score}
+                        messageBelow={"Хотите повторить попытку?"}
+                    />
+                    <ButtonNext
+                        nextStep={this.nextStep}
+                        randBird={this.randBird}
+                        optionsBirds={this.getOptionsBirds}
+                        locked={this.state.nextStep}
+                        changeNextStep={this.changeNextStep}
+                        resetFuncResult={this.resetResult}
+                        showQuestion={this.showQuestion}
+                        resetCount={this.resetCount}
+                        resetRadio={this.resetRadio}
+                        resetOptions={this.resetOptions}
+                        endGame={this.checkGame}
+                        resetScore={this.resetScore}
+                    />
+                </div>
+            );
+        } else {
+            return (
+                <div className="endGame__wrap">
+                    <EndGame
+                        message={"Вы набрали:"}
+                        score={this.state.score}
+                        messageBelow={"Поздравляю, Вы прошли игру!"}
+                    />
+                </div>
+            );
+        }
     }
 }
 

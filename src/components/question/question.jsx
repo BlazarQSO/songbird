@@ -10,7 +10,7 @@ class Question extends React.Component {
     }
 
     render() {
-        if (true){//this.props.right) {
+        if (this.props.right) {
             return (
                 <section className="question">
                     <ImgCmp img={this.props.randBird.image}/>

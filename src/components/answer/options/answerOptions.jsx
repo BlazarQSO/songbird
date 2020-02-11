@@ -5,23 +5,7 @@ import { AnswerOptionsItem } from './answerOptionsItem';
 class AnswerOptions extends React.Component {
     constructor(props){
         super(props);
-        // this.state = {
-        //     score: 5
-        // }
-        // this.getScore = this.getScore.bind(this);
     }
-
-    // getScore(check, score) {
-    //     if (score) {
-    //         return;
-    //     }
-
-    //     if (check) {
-    //         //this.props.changeScore(this.state.score);
-    //     } else {
-    //         this.setState({score: this.state.score - 1});
-    //     }
-    // }
 
     render() {
         return (
