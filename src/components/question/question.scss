@@ -1,0 +1,30 @@
+.question {
+    background-color: #303030;
+    max-width: 1024px;
+    margin: 0 auto;
+    margin-top: 18px;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.question__hint {
+    width: 67%;
+    min-width: 270px;
+    margin: 0;
+}
+.question__hint_title{
+    font-size: 34px;
+    margin-top: 5px;
+}
+.question__hint_line {
+    height: 1px;
+    background-color: white;
+    border: 0;
+}
+
+@media (max-width: 900px) {
+    .question__hint_title {
+        text-align: center;
+    }
+}

@@ -1,0 +1,20 @@
+import React from 'react';
+import './score.scss';
+
+class Score extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { score: 0 };
+    }
+
+    render() {
+        return (
+            <div className="header__logo_score">
+                <label>Score: </label>
+                <span>{this.props.score}</span>
+            </div>
+        );
+    }
+}
+
+export { Score }

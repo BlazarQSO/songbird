@@ -1,0 +1,14 @@
+.answer {
+    max-width: 1024px;
+    margin: 0 auto;
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 620px) {
+    .answer {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

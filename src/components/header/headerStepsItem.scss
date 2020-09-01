@@ -1,0 +1,16 @@
+.header__steps_item {
+    padding-top: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 35px;
+    min-width: 150px;
+    text-align: center;
+    font-size: 22px;
+    border: 2px solid green;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    border-radius: 5px;
+}
+.header__steps_item_selected {
+    background-color: #015540;
+}

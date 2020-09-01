@@ -1,0 +1,65 @@
+.answer__options_item{
+    background-color: #303030;
+    width: 90%;
+    height: 16.1%;
+    min-height: 50px;
+    border: 1px solid grey;
+    display: flex;
+    border-radius: 5px;
+}
+.answer__options_item:hover {
+    background-color: #444;
+}
+.answer__options_item_label{
+    font-size: 24px;
+    align-self: center;
+    padding-left: 10px;
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.answer__options_item_label span {
+    align-self: center;
+}
+
+.answer__options_item_radio{
+    outline: 0;
+    align-self: center;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+input[type=radio] {
+    display: none;
+}
+input[type=radio] + label:before {
+    content: "";
+    border: 1px solid white;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid white;
+    font-size: 20px;
+    line-height: 20px;
+    margin: 0px 5px 0 0;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 0;
+    transition: font-size ease .3s;
+    background-color: whitesmoke;
+    align-self: center;
+}
+.correctly input[type=radio]:checked + label:before {
+    background-color: green;
+}
+.incorrectly input[type=radio]:checked + label:before {
+    background-color: red;
+}
+@media (max-width: 620px) {
+    .answer__options_item {
+        width: 100%;
+    }
+}

@@ -1,0 +1,73 @@
+
+.answer__result{
+    width: 70%;
+    background-color: #303030;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.answer__result_info{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+.answer__result_info_figure {
+    width: 30%;
+    margin: 0;
+    margin-left: 10px;
+    margin-top: 10px;
+    min-width: 220px;
+}
+.answer__result_info_figure_img{
+    border-radius: 15px;
+}
+.answer__result_info_data{
+    width: 60%;
+    min-width: 280px;
+    margin: 0;
+}
+.answer__result_info_data_title{
+    font-size: 30px;
+    margin-top: 10px;
+}
+.answer__result_info_data_type{
+    font-size: 24px;
+    margin-top: 15px;
+}
+.answer__result_info_data_audio{
+    margin-top: 15px;
+    width: 100%;
+    min-width: 280px;
+}
+
+.answer__result_description{
+    min-width: 270px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+
+.answer__result_title {
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+}
+
+@media (max-width: 620px) {
+    .answer__result {
+        margin-top: 18px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .answer__result_info_data_title {
+        text-align: center;
+    }
+    .answer__result_info_data_type{
+        text-align: center;
+    }
+}
