@@ -15,6 +15,7 @@ class Main extends React.Component {
         const _optionsBirds = getOptionsBirdsInside();
         const _length = _optionsBirds.length;
         const _options = new Array(_length).fill("answer__options_item");
+        this.audio = new Audio();
         this.state = {
             step: 0,
             score: 0,
@@ -122,14 +123,11 @@ class Main extends React.Component {
 
     changeOptions(value, index, right) {
         if (right) {
-            var audio = new Audio();
-            audio.src = "https://www.xeno-canto.org/sounds/uploaded/IIJAXHKSCC/XC387835-Tit-like%20Dacnis%20%28call%2Csong%29%2020161204%2CEsidePortachuelo%2CHuascaranNP%2CPERU.mp3";
-            audio.autoplay = true;
-            document.querySelector('audio').pause();
+            this.audio.src = "https://www.xeno-canto.org/sounds/uploaded/IIJAXHKSCC/XC387835-Tit-like%20Dacnis%20%28call%2Csong%29%2020161204%2CEsidePortachuelo%2CHuascaranNP%2CPERU.mp3";
+            this.audio.autoplay = true;
         } else {
-            var audio = new Audio();
-            audio.src = "https://www.xeno-canto.org/sounds/uploaded/EHGWCIGILC/XC334238-aust-pelican-snp1.mp3";
-            audio.autoplay = true;
+            this.audio.src = "https://www.xeno-canto.org/sounds/uploaded/OHHTDSDNBT/EMA%20%20EMA%20%20MTZ%20XENO.mp3";
+            this.audio.autoplay = true;
         }
         const options = this.state.options;
         options[index] = value;
